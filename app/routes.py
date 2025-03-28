@@ -14,3 +14,7 @@ def register():
 @routes.route("/login")
 def login():
     return render_template("security/login.html")
+
+@routes.route("/simulation")
+def simulation():
+    return render_template("simulation.html")

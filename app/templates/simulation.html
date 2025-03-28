@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% set show_header=true %}
+{% set show_footer=true %}
+
+{% block content %}
+<form class="p-3">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Height</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Your height in cm.">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Weight</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Your weight in kg.">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress">Age</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="30">
+    </div>
+    <div class="form-group">
+        <label>Objetive</label>
+        <input class="form-control" id="exampleFormControlSelect1" placeholder="Describe your objetive.">
+        </input>
+    </div>
+    <button type="submit" class="btn btn-primary ">Simulate</button>
+</form>
+{% endblock content %}
