@@ -1,4 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1>Prompts para loguear</h1>
+<div class="container mt-4">
+    <h2>Registro</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }} 
+
+        <div class="mb-3">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", placeholder="Correo electrónico") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control", placeholder="Tu contraseña") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.remember.label(class="form-check-label") }}
+            {{ form.remember(class="form-check-input") }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
+    </form>
+</div>
 {% endblock content %}

@@ -1,6 +1,6 @@
 import os
 
 class Config:
-    SECRET_KEY = "supersecreto123"
-    SQLALCHEMY_DATABASE_URI = "sqlite:///database.db"  # Base de datos SQLite
-    SQLALCHEMY_TRACK_MODIFICATIONS = False  # Desactiva warnings innecesarios
+    SECRET_KEY = os.getenv('SECRET_KEY', 'supersecreto')  
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///database.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
