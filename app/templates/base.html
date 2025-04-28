@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body class="mh-100">
+    {% if show_header %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="/">Gymdex</a>
@@ -29,10 +30,13 @@
             </div>
         </div>
     </nav>
+    {% endif %}
     {% block content %}
     {% endblock %}
+    {% if show_footer %}
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 Gymdex | Todos los derechos reservados</p>
     </footer>
+    {% endif %}
 </body>
 </html>
