@@ -1,5 +1,51 @@
 {% extends 'base.html' %}
+{% set show_header=true %}
+{% set show_footer=true %}
 
 {% block content %}
-<h1>Simulador plan de entrenamiento</h1>
+<div class="vh-100">
+    <h1 class="p-3">Simulador plan de entrenamiento</h1>
+    <p class="p-3">En esta sección podrás generar un plan de entrenamiento acorde a tus características físicas y tu rango etario.</p>
+    <p class="p-3">Rellena el siguiente formulario con tus datos y el objetivo que deseas alcanzar.</p>
+    <form id="simulator-form" class="p-3">
+        <div class="mb-3">
+            <label for="age" class="form-label">Edad:</label>
+            <input type="number" class="form-control" id="age" required>
+        </div>
+        <div class="mb-3">
+            <label for="weight" class="form-label">Peso (kg):</label>
+            <input type="number" class="form-control" id="weight" required>
+        </div>
+        <div class="mb-3">
+            <label for="height" class="form-label">Altura (cm):</label>
+            <input type="number" class="form-control" id="height" required>
+        </div>
+        <div class="mb-3">
+            <label for="objetive" class="form-label">Tu objetivo:</label>
+            <textarea type="text" class="form-control" id="objetive" required rows="3" placeholder="Objetivo (ej: perder peso, ganar masa muscular, etc. Recuerda incluir si quieres o no hacer dieta, bajar o aumentar peso, qué parte de tu cuerpo deseas entrenar con más énfasis.)"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="generar">Generar plan</button>
+        <p id="respuesta"></p>
+</div>
 {% endblock content %}
+{% block scripts %}
+<script>
+    generarBtn = document.getElementById('generar');
+    
+
+    generarBtn.addEventListener('click', function (event) {
+        event.preventDefault(); // Evitar el envío del formulario
+
+        const age = document.getElementById('age').value;
+        const weight = document.getElementById('weight').value;
+        const height = document.getElementById('height').value;
+        const objetive = document.getElementById('objetive').value;
+
+        if (age && weight && height && objetive) {
+            document.getElementById('respuesta').textContent=`Plan generado para:\nEdad: ${age}\nPeso: ${weight}\nAltura: ${height}\nObjetivo: ${objetive}`
+        } else {
+            alert('Por favor, completa todos los campos.');
+        }
+    });
+</script>
+{% endblock scripts %}

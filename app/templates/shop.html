@@ -1,5 +1,81 @@
 {% extends 'base.html' %}
+{% set show_header=true %}
+{% set show_footer=true %}
 
 {% block content %}
-<h1>Tienda</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 bg-dark text-white p-3">
+            <h5 class="fw-bold">Categorías</h5>
+            <div class="accordion" id="accordionCategorias">
+              <div class="accordion-item bg-dark text-white border-0">
+                <h2 class="accordion-header" id="headingRopa">
+                  <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRopa" aria-expanded="false" aria-controls="collapseRopa">
+                    Ropa
+                  </button>
+                </h2>
+                <div id="collapseRopa" class="accordion-collapse collapse" aria-labelledby="headingRopa" data-bs-parent="#accordionCategorias">
+                  <div class="accordion-body p-0">
+                    <ul class="list-unstyled mb-0">
+                      <li><a href="#" class="d-block text-white ps-3 py-1">Poleras</a></li>
+                      <li><a href="#" class="d-block text-white ps-3 py-1">Shorts</a></li>
+                      <li><a href="#" class="d-block text-white ps-3 py-1">Dry fit</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item bg-dark text-white border-0">
+                <h2 class="accordion-header" id="headingConsumibles">
+                  <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseConsumibles" aria-expanded="false" aria-controls="collapseConsumibles">
+                    Consumibles
+                  </button>
+                </h2>
+                <div id="collapseConsumibles" class="accordion-collapse collapse" aria-labelledby="headingConsumibles" data-bs-parent="#accordionCategorias">
+                  <div class="accordion-body p-0">
+                    <ul class="list-unstyled mb-0">
+                      <li><a href="#" class="d-block text-white ps-3 py-1">Proteína</a></li>
+                      <li><a href="#" class="d-block text-white ps-3 py-1">Creatina</a></li>
+                      <li><a href="#" class="d-block text-white ps-3 py-1">Pre-entreno</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item bg-dark text-white border-0">
+                <h2 class="accordion-header" id="headingArticulos">
+                  <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseArticulos" aria-expanded="false" aria-controls="collapseArticulos">
+                    Articulos
+                  </button>
+                </h2>
+                <div id="collapseArticulos" class="accordion-collapse collapse" aria-labelledby="headingArticulos" data-bs-parent="#accordionCategorias">
+                  <div class="accordion-body p-0">
+                    <ul class="list-unstyled mb-0">
+                      <li><a href="#" class="d-block text-white ps-3 py-1">Gym</a></li>
+                      <li><a href="#" class="d-block text-white ps-3 py-1">Gym en casa</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+      <div class="col-md-10 bg-black text-white p-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          {% for producto in productos %}
+          <div class="col">
+            <div class="card bg-dark text-white text-center">
+              <div class="card-body">
+                <div class="border border-light">
+                    <img src="{{ producto.imagen }}" class="card-img-top" alt="{{ producto.nombre }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <p class="mt-2">{{ producto.nombre }}</p>
+              </div>
+                <p>Precio: {{ producto.precio }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
 {% endblock content %}

@@ -1,0 +1,57 @@
+[
+    {
+      "nombre": "Polera Dry Fit Negra",
+      "categoria": "Ropa",
+      "precio": 12990,
+      "imagen": "https://via.placeholder.com/200"
+    },
+    {
+      "nombre": "Short Deportivo Azul",
+      "categoria": "Ropa",
+      "precio": 10990,
+      "imagen": "https://via.placeholder.com/200"
+    },
+    {
+      "nombre": "Polera Manga Larga Gris",
+      "categoria": "Ropa",
+      "precio": 13990,
+      "imagen": "https://via.placeholder.com/200"
+    },
+    {
+      "nombre": "Proteína Whey Chocolate",
+      "categoria": "Consumibles",
+      "precio": 34990,
+      "imagen": "https://via.placeholder.com/200"
+    },
+    {
+      "nombre": "Creatina Monohidratada 300g",
+      "categoria": "Consumibles",
+      "precio": 19990,
+      "imagen": "https://via.placeholder.com/200"
+    },
+    {
+      "nombre": "Pre-entreno Sandía 250g",
+      "categoria": "Consumibles",
+      "precio": 17990,
+      "imagen": "https://via.placeholder.com/200"
+    },
+    {
+      "nombre": "Mancuernas Ajustables 20kg",
+      "categoria": "Articulos",
+      "precio": 11990,
+      "imagen": "https://via.placeholder.com/200"
+    },
+    {
+      "nombre": "Banda elastica de Resistencia 10kg",
+      "categoria": "Articulos",
+      "precio": 9990,
+      "imagen": "https://via.placeholder.com/200"
+    },
+    {
+      "nombre": "Colchoneta de Yoga",
+      "categoria": "Articulos",
+      "precio": 7990,
+      "imagen": "https://via.placeholder.com/200"
+    }
+  ]
+  

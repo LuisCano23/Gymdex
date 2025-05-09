@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% set show_header=true %}
+{% set show_footer=true %}
 
 {% block content %}
 <h1>Prompts para loguear</h1>
 <div class="container mt-4">
-    <h2>Registro</h2>
     <form method="POST">
         {{ form.hidden_tag() }} 
 

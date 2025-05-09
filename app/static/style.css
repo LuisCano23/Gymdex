@@ -1,0 +1,17 @@
+body{
+    background-color: #000;
+    color: #fff;
+}
+
+.btn-outline-white {
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+  }
+  
+.btn-outline-white:hover {
+    background-color: #fff;
+    color: #000;
+  }

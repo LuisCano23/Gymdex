@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from flask_login import login_required, login_user, logout_user, current_user
 from app import db
 from app.models import User
 from app.forms import RegistrationForm, LoginForm
+import json
+import os
 
 bp = Blueprint("routes", __name__)
 
@@ -63,7 +65,11 @@ def features():
 
 @bp.route("/compare")
 def compare():
-    return render_template("compare.html")
+    json_path = os.path.join(current_app.root_path, 'static', 'gyms.json')
+    with open(json_path, 'r', encoding='utf-8') as file:
+        gyms = json.load(file)
+        
+    return render_template("compare.html", gyms=gyms)
 
 @bp.route("/simulation")
 def simulation():
@@ -71,7 +77,10 @@ def simulation():
 
 @bp.route("/shop")
 def shop():
-    return render_template("shop.html")
+    json_path = os.path.join(current_app.root_path, 'static', 'productos.json')
+    with open(json_path, 'r', encoding='utf-8') as file:
+        productos = json.load(file)
+    return render_template("shop.html", productos=productos)
 
 @bp.route("/contacts")
 def contacts():

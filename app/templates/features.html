@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
+{% set show_header=true %}
+{% set show_footer=true %}
 
 {% block content %}
-<h1>Listado de features</h1>
+<div class="text-center justify-content-start align-items-center vh-100 d-flex flex-column">
+  <h1 class="mb-5">Características:</h1>
+  <div class="d-grid gap-3 align-items-center justify-content-center">
+    <a class="btn btn-outline-white px-5 py-2 fw-bold">Perfil</a>
+    <a class="btn btn-outline-white px-5 py-2 fw-bold" href="{{ url_for('routes.compare') }}">Comparar</a>
+    <a class="btn btn-outline-white px-5 py-2 fw-bold" href="{{ url_for('routes.simulation') }}">Simluador</a>
+    <a class="btn btn-outline-white px-5 py-2 fw-bold" href="{{ url_for('routes.shop') }}">Tienda</a>
+    <a class="btn btn-outline-white px-5 py-2 fw-bold" href="{{ url_for('routes.contacts') }}">Contactos</a>
+  </div>
+</div>
 {% endblock content %}
