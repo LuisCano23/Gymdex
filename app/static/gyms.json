@@ -4,7 +4,7 @@
       "ciudad": "Santiago",
       "pais": "Chile",
       "precio_mensual": 28000,
-      "saturacion_actual": 65,
+      "saturacion_actual": "Alta",
       "ventilacion": "Buena",
       "estado_maquinas": "90% operativas"
     },
@@ -13,7 +13,7 @@
       "ciudad": "Valparaíso",
       "pais": "Chile",
       "precio_mensual": 23000,
-      "saturacion_actual": 50,
+      "saturacion_actual": "Alta",
       "ventilacion": "Regular",
       "estado_maquinas": "75% operativas"
     },
@@ -22,7 +22,7 @@
       "ciudad": "Concepción",
       "pais": "Chile",
       "precio_mensual": 30000,
-      "saturacion_actual": 80,
+      "saturacion_actual": "Muy Alta",
       "ventilacion": "Buena",
       "estado_maquinas": "60% operativas"
     },
@@ -31,7 +31,7 @@
       "ciudad": "Antofagasta",
       "pais": "Chile",
       "precio_mensual": 27000,
-      "saturacion_actual": 35,
+      "saturacion_actual": "Baja",
       "ventilacion": "Excelente",
       "estado_maquinas": "95% operativas"
     },
@@ -40,7 +40,7 @@
       "ciudad": "La Serena",
       "pais": "Chile",
       "precio_mensual": 25000,
-      "saturacion_actual": 45,
+      "saturacion_actual": "Media",
       "ventilacion": "Buena",
       "estado_maquinas": "85% operativas"
     }

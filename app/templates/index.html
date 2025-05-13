@@ -1,46 +1,35 @@
 {% extends 'base.html' %}
 {% set show_header=true %}
 {% set show_footer=true %}
-    {% block content %}
-    <div class="container my-5 vh-100">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Sección 1</h2>
-                <p>Este es un espacio para contenido, puedes agregar lo que necesites.</p>
-            </div>
-            <div class="col-md-6">
-                <img src="https://via.placeholder.com/500" class="img-fluid rounded" alt="Imagen de ejemplo">
-            </div>
-        </div>
-        
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Imagen">
-                    <div class="card-body">
-                        <h5 class="card-title">Tarjeta 1</h5>
-                        <p class="card-text">Descripción breve del contenido.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Imagen">
-                    <div class="card-body">
-                        <h5 class="card-title">Tarjeta 2</h5>
-                        <p class="card-text">Más información aquí.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Imagen">
-                    <div class="card-body">
-                        <h5 class="card-title">Tarjeta 3</h5>
-                        <p class="card-text">Otro contenido interesante.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+{% block content %}
+<div class="container py-5 text-white text-center">
+  <h1 class="fw-bold display-3">GYMDEX</h1>
+  <p class="lead mb-5">Encuentra, compara y elige el mejor gimnasio para tu estilo de vida saludable.</p>
+
+  <div class="row g-4 justify-content-center">
+    <div class="col-md-4 d-flex align-items-center justify-content-center">
+      <p class="fs-5">
+        Compara GYMs en tu zona, saturación, estado de maquinas y precios. Encuentra el mejor lugar para entrenar comparando lo que realmente importa. Este espacio se ajusta para que esté alineado con la imagen de al lado.
+      </p>
     </div>
-    {% endblock %}
+    <div class="col-md-6">
+      <div class="bg-dark d-flex align-items-center justify-content-center">
+        <img src="{{ url_for('static', filename='comparativa.png') }}" alt="comparar" class="img-fluid border border-warning">
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mt-4 justify-content-center">
+    <div class="col-md-6">
+      <div class="bg-dark d-flex align-items-center justify-content-center">
+        <img src="https://www.santanderpost.com.ar/wp-content/uploads/2023/08/IA-y-deporte-Tecnologia-2.jpg" alt="simulacion" class="img-fluid border border-warning">
+      </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-center justify-content-center">
+      <p class="fs-5">
+        Simula tu plan de entrenamiento con inteligencia artificial. Te ayudamos a encontrar el mejor gimnasio para ti, y te sugerimos un plan de entrenamiento personalizado basado en tus objetivos y preferencias.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

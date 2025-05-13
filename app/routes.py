@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from flask_login import login_required, login_user, logout_user, current_user
 from app import db
-from app.models import User
-from app.forms import RegistrationForm, LoginForm
+from app.models import User, Publicacion
+from app.forms import RegistrationForm, LoginForm, PublicacionForm
 import json
 import os
 
@@ -82,6 +82,21 @@ def shop():
         productos = json.load(file)
     return render_template("shop.html", productos=productos)
 
-@bp.route("/contacts")
+@bp.route("/contacts", methods=["GET", "POST"])
+@login_required
 def contacts():
-    return render_template("contacts.html")
+    form = PublicacionForm()
+    if form.validate_on_submit():
+        new_publicacion = Publicacion(
+            profesion=form.profesion.data,
+            contenido=form.contenido.data,
+            telefono=form.telefono.data,
+            email_contacto=form.email_contacto.data,
+            autor_id=current_user.id
+        )
+        db.session.add(new_publicacion)
+        db.session.commit()
+        return redirect(url_for("routes.contacts")) 
+
+    publicaciones = Publicacion.query.order_by(Publicacion.fecha_publicacion.desc()).all()
+    return render_template("contacts.html", form=form, publicaciones=publicaciones)

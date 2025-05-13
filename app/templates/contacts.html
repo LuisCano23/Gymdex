@@ -3,5 +3,66 @@
 {% set show_footer=true %}
 
 {% block content %}
-<h1>Listado de contactos</h1>
+<div class="container py-5 vh-100">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">Listado de contactos</h1>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPublicacion">
+      Publicar
+    </button>
+  </div>
+
+  <div class="modal fade text-dark" id="modalPublicacion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Nueva Publicación</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              {{ form.profesion.label(class="form-label") }}
+              {{ form.profesion(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ form.contenido.label(class="form-label") }}
+              {{ form.contenido(class="form-control", rows=3) }}
+            </div>
+            <div class="mb-3">
+              {{ form.telefono.label(class="form-label") }}
+              {{ form.telefono(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ form.email_contacto.label(class="form-label") }}
+              {{ form.email_contacto(class="form-control") }}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">{{ form.submit.label.text }}</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for publicacion in publicaciones %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ publicacion.profesion }}</h5>
+          <p class="card-text">{{ publicacion.contenido }}</p>
+          <div class="mt-auto">
+            <hr>
+            <p class="mb-1"><strong>Tel:</strong> {{ publicacion.telefono }}</p>
+            <p class="mb-0"><strong>Email:</strong> {{ publicacion.email_contacto }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock content %}

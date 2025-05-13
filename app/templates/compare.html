@@ -28,7 +28,7 @@
             <p><strong>Ciudad:</strong> <span id="ciudad1"></span></p>
             <p><strong>País:</strong> <span id="pais1"></span></p>
             <p><strong>Precio mensual:</strong> $<span id="precio1"></span></p>
-            <p><strong>Saturación actual:</strong> <span id="saturacion1"></span>%</p>
+            <p><strong>Saturación media:</strong> <span id="saturacion1"></span></p>
             <p><strong>Ventilación:</strong> <span id="ventilacion1"></span></p>
             <p><strong>Estado de las máquinas:</strong> <span id="estado1"></span></p>
         </div>
@@ -38,7 +38,7 @@
             <p><strong>Ciudad:</strong> <span id="ciudad2"></span></p>
             <p><strong>País:</strong> <span id="pais2"></span></p>
             <p><strong>Precio mensual:</strong> $<span id="precio2"></span></p>
-            <p><strong>Saturación actual:</strong> <span id="saturacion2"></span>%</p>
+            <p><strong>Saturación media:</strong> <span id="saturacion2"></span></p>
             <p><strong>Ventilación:</strong> <span id="ventilacion2"></span></p>
             <p><strong>Estado de las máquinas:</strong> <span id="estado2"></span></p>
         </div>
@@ -48,36 +48,94 @@
 
 {% block scripts %}
 <script>
-    const gyms = {{ gyms| tojson }};
+    const gyms = {{ gyms|tojson }};
     const select1 = document.getElementById('gyms1');
     const select2 = document.getElementById('gyms2');
 
-    const details1 = document.getElementById('gym1-details');
-    const details2 = document.getElementById('gym2-details');
+    function compararGyms(gym1, gym2) {
+        const saturacionMap = {
+            'muy alta': 4,
+            'alta': 3,
+            'media': 2,
+            'baja': 1
+        };
+
+        const ventilacionMap = {
+            'baja': 1,
+            'regular': 2,
+            'buena': 3
+        };
+
+        ['precio1', 'precio2', 'saturacion1', 'saturacion2', 'ventilacion1', 'ventilacion2'].forEach(id => {
+            document.getElementById(id).className = '';
+        });
+
+        const precio1 = gym1.precio_mensual;
+        const precio2 = gym2.precio_mensual;
+        if (precio1 > precio2) {
+            document.getElementById('precio1').classList.add('text-success');
+            document.getElementById('precio2').classList.add('text-danger');
+        } else if (precio1 < precio2) {
+            document.getElementById('precio1').classList.add('text-danger');
+            document.getElementById('precio2').classList.add('text-success');
+        } else {
+            document.getElementById('precio1').classList.add('text-warning');
+            document.getElementById('precio2').classList.add('text-warning');
+        }
+
+        const sat1 = saturacionMap[gym1.saturacion_actual.toLowerCase()];
+        const sat2 = saturacionMap[gym2.saturacion_actual.toLowerCase()];
+        if (sat1 < sat2) {
+            document.getElementById('saturacion1').classList.add('text-success');
+            document.getElementById('saturacion2').classList.add('text-danger');
+        } else if (sat1 > sat2) {
+            document.getElementById('saturacion1').classList.add('text-danger');
+            document.getElementById('saturacion2').classList.add('text-success');
+        } else {
+            document.getElementById('saturacion1').classList.add('text-warning');
+            document.getElementById('saturacion2').classList.add('text-warning');
+        }
+
+        const vent1 = ventilacionMap[gym1.ventilacion.toLowerCase()];
+        const vent2 = ventilacionMap[gym2.ventilacion.toLowerCase()];
+        if (vent1 > vent2) {
+            document.getElementById('ventilacion1').classList.add('text-success');
+            document.getElementById('ventilacion2').classList.add('text-danger');
+        } else if (vent1 < vent2) {
+            document.getElementById('ventilacion1').classList.add('text-danger');
+            document.getElementById('ventilacion2').classList.add('text-success');
+        } else {
+            document.getElementById('ventilacion1').classList.add('text-warning');
+            document.getElementById('ventilacion2').classList.add('text-warning');
+        }
+    }
+
+    function actualizarDetalles(idPrefix, gym) {
+        document.getElementById(`nombre${idPrefix}`).textContent = gym.nombre;
+        document.getElementById(`ciudad${idPrefix}`).textContent = gym.ciudad;
+        document.getElementById(`pais${idPrefix}`).textContent = gym.pais;
+        document.getElementById(`precio${idPrefix}`).textContent = gym.precio_mensual;
+        document.getElementById(`saturacion${idPrefix}`).textContent = gym.saturacion_actual;
+        document.getElementById(`ventilacion${idPrefix}`).textContent = gym.ventilacion;
+        document.getElementById(`estado${idPrefix}`).textContent = gym.estado_maquinas;
+    }
+
+    let gym1Seleccionado = null;
+    let gym2Seleccionado = null;
 
     select1.addEventListener('change', function () {
-        const gym = gyms[this.value];
-        if (gym) {
-            document.getElementById('nombre1').textContent = gym.nombre;
-            document.getElementById('ciudad1').textContent = gym.ciudad;
-            document.getElementById('pais1').textContent = gym.pais;
-            document.getElementById('precio1').textContent = gym.precio_mensual;
-            document.getElementById('saturacion1').textContent = gym.saturacion_actual;
-            document.getElementById('ventilacion1').textContent = gym.ventilacion;
-            document.getElementById('estado1').textContent = gym.estado_maquinas;
+        gym1Seleccionado = gyms[this.value];
+        if (gym1Seleccionado) {
+            actualizarDetalles('1', gym1Seleccionado);
+            if (gym2Seleccionado) compararGyms(gym1Seleccionado, gym2Seleccionado);
         }
     });
 
     select2.addEventListener('change', function () {
-        const gym = gyms[this.value];
-        if (gym) {
-            document.getElementById('nombre2').textContent = gym.nombre;
-            document.getElementById('ciudad2').textContent = gym.ciudad;
-            document.getElementById('pais2').textContent = gym.pais;
-            document.getElementById('precio2').textContent = gym.precio_mensual;
-            document.getElementById('saturacion2').textContent = gym.saturacion_actual;
-            document.getElementById('ventilacion2').textContent = gym.ventilacion;
-            document.getElementById('estado2').textContent = gym.estado_maquinas;
+        gym2Seleccionado = gyms[this.value];
+        if (gym2Seleccionado) {
+            actualizarDetalles('2', gym2Seleccionado);
+            if (gym1Seleccionado) compararGyms(gym1Seleccionado, gym2Seleccionado);
         }
     });
 </script>

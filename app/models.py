@@ -17,3 +17,16 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    
+class Publicacion(db.Model):
+    __tablename__ = "publicaciones"
+    
+    id = db.Column(db.Integer, primary_key=True)
+    profesion = db.Column(db.String(100), nullable=False)
+    contenido = db.Column(db.String(300), nullable=False) 
+    telefono = db.Column(db.String(20), nullable=False)
+    email_contacto = db.Column(db.String(150), nullable=False)
+    fecha_publicacion = db.Column(db.DateTime, default=datetime.utcnow)
+
+    autor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    autor = db.relationship('User', backref=db.backref('publicaciones', lazy=True))
