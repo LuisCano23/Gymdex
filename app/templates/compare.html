@@ -72,10 +72,10 @@
 
         const precio1 = gym1.precio_mensual;
         const precio2 = gym2.precio_mensual;
-        if (precio1 > precio2) {
+        if (precio1 < precio2) {
             document.getElementById('precio1').classList.add('text-success');
             document.getElementById('precio2').classList.add('text-danger');
-        } else if (precio1 < precio2) {
+        } else if (precio1 > precio2) {
             document.getElementById('precio1').classList.add('text-danger');
             document.getElementById('precio2').classList.add('text-success');
         } else {
