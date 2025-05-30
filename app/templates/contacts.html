@@ -60,9 +60,42 @@
             <p class="mb-0"><strong>Email:</strong> {{ publicacion.email_contacto }}</p>
           </div>
         </div>
+        {% if user.id == publicacion.autor_id %}
+        <div class="card-footer text-end">
+          <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalPublicacion"
+            data-id="{{ publicacion.id }}" data-profesion="{{ publicacion.profesion }}"
+            data-contenido="{{ publicacion.contenido }}" data-telefono="{{ publicacion.telefono }}"
+            data-email="{{ publicacion.email_contacto }}" onclick="editarPublicacion(this)">
+            Editar
+          </button>
+          <form action="{{ url_for('routes.eliminar_publicacion', id=publicacion.id) }}" method="POST"
+            style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+          </form>
+        </div>
+        {% endif %}
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-</div>
 {% endblock content %}
+
+{% block scripts %}
+<script>
+  function editarPublicacion(button) {
+    const id = button.getAttribute('data-id');
+    const profesion = button.getAttribute('data-profesion');
+    const contenido = button.getAttribute('data-contenido');
+    const telefono = button.getAttribute('data-telefono');
+    const email = button.getAttribute('data-email');
+
+    document.querySelector('[name=profesion]').value = profesion;
+    document.querySelector('[name=contenido]').value = contenido;
+    document.querySelector('[name=telefono]').value = telefono;
+    document.querySelector('[name=email_contacto]').value = email;
+
+    const form = document.querySelector('#modalPublicacion form');
+    form.action = `/editar-publicacion/${id}`;
+  }
+</script>
+{% endblock scripts %}

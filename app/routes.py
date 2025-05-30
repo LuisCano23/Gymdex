@@ -85,6 +85,7 @@ def shop():
 @bp.route("/contacts", methods=["GET", "POST"])
 @login_required
 def contacts():
+    user = current_user
     form = PublicacionForm()
     if form.validate_on_submit():
         new_publicacion = Publicacion(
@@ -99,4 +100,29 @@ def contacts():
         return redirect(url_for("routes.contacts")) 
 
     publicaciones = Publicacion.query.order_by(Publicacion.fecha_publicacion.desc()).all()
-    return render_template("contacts.html", form=form, publicaciones=publicaciones)
+    return render_template("contacts.html", form=form, publicaciones=publicaciones, user=user)
+
+@bp.route("/editar-publicacion/<int:id>", methods=["POST"])
+@login_required
+def editar_publicacion(id):
+    publicacion = Publicacion.query.get_or_404(id)
+
+    form = PublicacionForm()
+    if form.validate_on_submit():
+        publicacion.profesion = form.profesion.data
+        publicacion.contenido = form.contenido.data
+        publicacion.telefono = form.telefono.data
+        publicacion.email_contacto = form.email_contacto.data
+        db.session.commit()
+        return redirect(url_for("routes.contacts"))
+
+    flash("Hubo un error al editar", "danger")
+    return redirect(url_for("routes.contacts"))
+
+@bp.route("/eliminar-publicacion/<int:id>", methods=["POST"])
+@login_required
+def eliminar_publicacion(id):
+    publicacion = Publicacion.query.get_or_404(id)
+    db.session.delete(publicacion)
+    db.session.commit()
+    return redirect(url_for("routes.contacts"))
