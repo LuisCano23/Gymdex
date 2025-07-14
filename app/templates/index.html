@@ -2,34 +2,64 @@
 {% set show_header=true %}
 {% set show_footer=true %}
 {% block content %}
-<div class="container py-5 text-white text-center">
-  <h1 class="fw-bold display-3">GYMDEX</h1>
-  <p class="lead mb-5">Encuentra, compara y elige el mejor gimnasio para tu estilo de vida saludable.</p>
+
+<!-- Carrusel a ancho completo -->
+<div class="container-fluid px-0">
+  <div id="brandCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" style="height: 400px;">
+      <div class="carousel-item active h-100">
+        <img src="https://www.lavanguardia.com/files/og_thumbnail/uploads/2022/01/17/61e57183d0081.jpeg"
+             class="d-block w-100 h-100 object-fit-contain bg-black" alt="Nike">
+      </div>
+      <div class="carousel-item h-100">
+        <img src="https://static.mercadonegro.pe/wp-content/uploads/2021/11/23181539/1000x523-1.jpg"
+             class="d-block w-100 h-100 object-fit-contain bg-black" alt="Adidas">
+      </div>
+      <div class="carousel-item h-100">
+        <img src="https://www.cronista.com/files/image/787/787687/661d2149174e2.png"
+             class="d-block w-100 h-100 object-fit-contain bg-black" alt="Puma">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#brandCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-success rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#brandCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-success rounded-circle" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+</div>
+
+<div class="container my-5 py-5 text-white text-center bg-dark rounded-4">
+  <h1 class="fw-bold display-3 text-warning">GYMDEX <img src="{{ url_for('static', filename='logo GYMDEX.png') }}" alt="logo" style="height: 100px; width: 100px;"></h1>
+  <p class="lead mb-5 text-success">Encuentra, compara y elige el mejor gimnasio para tu estilo de vida saludable.</p>
 
   <div class="row g-4 justify-content-center">
     <div class="col-md-4 d-flex align-items-center justify-content-center">
-      <p class="fs-5">
-        Compara GYMs por zona, saturación, estado de maquinas y precios. Encuentra el mejor lugar para entrenar comparando lo que realmente importa. Este espacio se ajusta para que esté alineado con la imagen de al lado.
+      <p class="fs-5 text-white">
+        Compara GYMs por zona, saturación, estado de máquinas y precios. Encuentra el mejor lugar para entrenar comparando lo que realmente importa.
       </p>
     </div>
     <div class="col-md-6">
-      <div class="bg-dark d-flex align-items-center justify-content-center">
-        <img src="{{ url_for('static', filename='comparativa.png') }}" alt="comparar" class="img-fluid border border-warning">
+      <div class="bg-black d-flex align-items-center justify-content-center rounded-4 p-3">
+        <img src="{{ url_for('static', filename='comparativa.png') }}" alt="comparar" class="img-fluid border border-warning rounded-3">
       </div>
     </div>
   </div>
 
   <div class="row g-4 mt-4 justify-content-center">
     <div class="col-md-6">
-      <div class="bg-dark d-flex align-items-center justify-content-center">
-        <img src="https://www.santanderpost.com.ar/wp-content/uploads/2023/08/IA-y-deporte-Tecnologia-2.jpg" alt="simulacion" class="img-fluid border border-warning">
+      <div class="bg-black d-flex align-items-center justify-content-center rounded-4 p-3">
+        <img src="https://www.santanderpost.com.ar/wp-content/uploads/2023/08/IA-y-deporte-Tecnologia-2.jpg" alt="simulacion" class="img-fluid border border-warning rounded-3">
       </div>
     </div>
     <div class="col-md-4 d-flex align-items-center justify-content-center">
-      <p class="fs-5">
-        Simula tu plan de entrenamiento con inteligencia artificial. Te ayudamos a encontrar el mejor gimnasio para ti, y te sugerimos un plan de entrenamiento personalizado basado en tus objetivos y preferencias.
+      <p class="fs-5 text-white">
+        Simula tu plan de entrenamiento con inteligencia artificial. Te ayudamos a encontrar el mejor gimnasio para ti, y te sugerimos un plan personalizado.
       </p>
     </div>
   </div>
 </div>
+
 {% endblock %}

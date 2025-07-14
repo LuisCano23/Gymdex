@@ -3,14 +3,27 @@
 {% set show_footer=true %}
 
 {% block content %}
-<div class="text-center justify-content-start align-items-center vh-100 d-flex flex-column">
-  <h1 class="mb-5">Características:</h1>
-  <div class="d-grid gap-3 align-items-center justify-content-center">
-    <a class="btn btn-outline-white px-5 py-2 fw-bold">Perfil</a>
-    <a class="btn btn-outline-white px-5 py-2 fw-bold" href="{{ url_for('routes.compare') }}">Comparar</a>
-    <a class="btn btn-outline-white px-5 py-2 fw-bold" href="{{ url_for('routes.simulation') }}">Simluador</a>
-    <a class="btn btn-outline-white px-5 py-2 fw-bold" href="{{ url_for('routes.shop') }}">Tienda</a>
-    <a class="btn btn-outline-white px-5 py-2 fw-bold" href="{{ url_for('routes.contacts') }}">Contactos</a>
+<div class="container my-5 py-5 text-white">
+  <div class="bg-dark rounded-4 shadow-lg p-5">
+    <div class="row align-items-center">
+      
+      <div class="col-md-6 mb-4 mb-md-0 d-flex justify-content-center">
+        <img src="{{ url_for('static', filename='logo GYMDEX.png') }}"
+             alt="fitness" class="img-fluid rounded-3 w-75 border border-success">
+      </div>
+
+      <div class="col-md-6 text-center">
+        <h1 class="text-warning fw-bold mb-5">Características</h1>
+        <div class="d-grid gap-3">
+          <a class="btn btn-success px-5 py-2 fw-bold" href="#">Perfil</a>
+          <a class="btn btn-success px-5 py-2 fw-bold" href="{{ url_for('routes.compare') }}">Comparar</a>
+          <a class="btn btn-success px-5 py-2 fw-bold" href="{{ url_for('routes.simulation') }}">Simulador</a>
+          <a class="btn btn-success px-5 py-2 fw-bold" href="{{ url_for('routes.shop') }}">Tienda</a>
+          <a class="btn btn-success px-5 py-2 fw-bold" href="{{ url_for('routes.contacts') }}">Contactos</a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 {% endblock content %}

@@ -3,14 +3,15 @@
 {% set show_footer=true %}
 
 {% block content %}
-<div class="container py-5 vh-100">
+<div class="container my-5 py-5 text-white">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="mb-0">Listado de contactos</h1>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPublicacion">
+    <h1 class="mb-0 text-warning fw-bold">Listado de contactos</h1>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPublicacion">
       Publicar
     </button>
   </div>
 
+  <!-- Modal de publicación -->
   <div class="modal fade text-dark" id="modalPublicacion" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
@@ -39,7 +40,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success">{{ form.submit.label.text }}</button>
+            <button type="submit" class="btn btn-warning">{{ form.submit.label.text }}</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           </div>
         </form>
@@ -47,25 +48,27 @@
     </div>
   </div>
 
+  <!-- Grilla de publicaciones -->
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for publicacion in publicaciones %}
     <div class="col">
-      <div class="card h-100 shadow-sm">
+      <div class="card h-100 shadow-lg bg-black text-white rounded-4">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ publicacion.profesion }}</h5>
+          <h5 class="card-title text-success">{{ publicacion.profesion }}</h5>
           <p class="card-text">{{ publicacion.contenido }}</p>
           <div class="mt-auto">
-            <hr>
-            <p class="mb-1"><strong>Tel:</strong> {{ publicacion.telefono }}</p>
-            <p class="mb-0"><strong>Email:</strong> {{ publicacion.email_contacto }}</p>
+            <hr class="border-light">
+            <p class="mb-1"><strong>📞 Tel:</strong> {{ publicacion.telefono }}</p>
+            <p class="mb-0"><strong>📧 Email:</strong> {{ publicacion.email_contacto }}</p>
           </div>
         </div>
         {% if user.id == publicacion.autor_id %}
-        <div class="card-footer text-end">
-          <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalPublicacion"
-            data-id="{{ publicacion.id }}" data-profesion="{{ publicacion.profesion }}"
-            data-contenido="{{ publicacion.contenido }}" data-telefono="{{ publicacion.telefono }}"
-            data-email="{{ publicacion.email_contacto }}" onclick="editarPublicacion(this)">
+        <div class="card-footer bg-dark text-end border-top border-secondary">
+          <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+            data-bs-target="#modalPublicacion" data-id="{{ publicacion.id }}"
+            data-profesion="{{ publicacion.profesion }}" data-contenido="{{ publicacion.contenido }}"
+            data-telefono="{{ publicacion.telefono }}" data-email="{{ publicacion.email_contacto }}"
+            onclick="editarPublicacion(this)">
             Editar
           </button>
           <form action="{{ url_for('routes.eliminar_publicacion', id=publicacion.id) }}" method="POST"
@@ -75,9 +78,10 @@
         </div>
         {% endif %}
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
   </div>
+</div>
 {% endblock content %}
 
 {% block scripts %}
